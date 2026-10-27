@@ -192,4 +192,4 @@ node tools/poster-test.js 812 375    # 横屏
 输出在 `shots/`，同时打印每阶段的 `obstr`（面板遮挡像素）/`usable`（可用高度比）/drawcall。
 `tools/shot.js` 是只截单帧的简化版。
 
-`shots/` 里是 390×844 与 812×375 两套全流程截图，只是留档，可以整个删掉。
+`shots/` 里是 390×844 与 812×375 两套全流程截图，只是本地留档，没有进仓库（`.gitignore` 里排掉了）。

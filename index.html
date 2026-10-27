@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#FFF8EC" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f2b441'/%3E%3Cpath d='M6 14h20a10 10 0 0 1-20 0z' fill='%23fff8ec'/%3E%3C/svg%3E" />
+<title>过桥米线 · 3D 烹饪小游戏</title>
+<link rel="stylesheet" href="./styles/main.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <canvas id="gl"></canvas>
+
+  <div id="ui">
+    <header id="hud">
+      <div class="hud-left">
+        <div class="steps" id="steps"></div>
+        <div class="stage-title" id="stage-title">炖鸡汤</div>
+      </div>
+      <div class="hud-right">
+        <button class="icon-btn" id="btn-sound" aria-label="音效开关" title="音效开关">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path id="snd-wave" d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+            <path id="snd-arc" d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="icon-btn ghost" id="btn-skip">跳过</button>
+      </div>
+    </header>
+
+    <div id="stage-ui"></div>
+    <footer id="actions"></footer>
+  </div>
+
+  <div id="toast-wrap"></div>
+  <div id="fade"></div>
+
+  <div id="boot">
+    <div class="boot-inner">
+      <div class="boot-badge">
+        <div class="boot-bowl">
+          <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+          <span class="broth"></span>
+        </div>
+      </div>
+      <h1>过桥米线</h1>
+      <p class="sub">一碗滚汤，七样鲜货，三分钟的手艺</p>
+      <button id="btn-start" class="primary big">开始下厨</button>
+      <div class="boot-load">
+        <div class="boot-bar"><i id="boot-bar-fill"></i></div>
+        <span id="boot-hint">正在准备灶台…</span>
+      </div>
+      <!-- 链接地址与 src/data/config.js 的 LINKS.blog 保持一致 -->
+      <a class="boot-link" href="https://world.ccrice.com" target="_blank" rel="noopener noreferrer">
+        在米饭博客看更多 <b>world.ccrice.com</b>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 3D 引擎走 CDN，网络异常时给一句人话
+  setTimeout(function () {
+    if (window.__gqmx_booted) return;
+    var b = document.getElementById('boot');
+    var h = document.getElementById('boot-hint');
+    var s = document.getElementById('btn-start');
+    if (b) b.classList.add('error');
+    if (s) s.style.display = 'none';
+    if (h) h.innerHTML = '3D 引擎没加载出来<br><span style="opacity:.75">确认 vendor/three 目录在，并用 http(s) 打开本页（不能直接双击 file://）</span>';
+  }, 9000);
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
